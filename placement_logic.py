@@ -1,18 +1,51 @@
-from random import randint
+from random import randint, random
 
-def single_placement_sim(seminars:int, max_class_size:int, students:int, preferences:int) -> dict:
-    """This function simulates the discovery seminar scenario: a number of students ranking classes with a student limit."""
-    """Output is a dictonary containing the number of students recieving each possible ranked preference."""
 
+
+def generate_even_rankings(seminars:int, students:int, preferences:int) -> dict:
     student_rankings = {}
     for student in range(students):
         student_ranking = []
         while len(student_ranking) < preferences:
-            rank = randint(1, seminars)
-            if rank not in student_ranking:
-                student_ranking.append(rank)
+            seminar = randint(1, seminars)
+            if seminar not in student_ranking:
+                student_ranking.append(seminar)
         student_rankings[student + 1] = student_ranking
+    return student_rankings
     """Generates dictionary 'student_rankings' with student numbers and their preferences."""
+
+def generate_uneven_rankings(seminars:int, students:int, preferences:int, distribution_dict = dict) -> dict:
+    """generates same ranking dictonary given a dictonary of the distribution of selections of each seminar"""
+    probability_dict = {}
+    probability = 0
+    for seminar, distribution in distribution_dict.items():
+        probability += distribution
+        probability_dict[seminar] = probability
+    student_rankings = {}
+    for student in range(students):
+        student_ranking = []
+        while len(student_ranking) < preferences:
+            choice = random()
+            for seminar, probability in probability_dict.items():
+                if seminar == 1 and choice <= probability:
+                    student_ranking.append(seminar)
+                elif seminar > 1 and seminar < seminars and choice > probability_dict[seminar - 1] and choice <= probability:
+                    student_ranking.append(seminar)
+                elif seminar == seminars and choice > probability_dict[seminar - 1]:
+                    student_ranking.append(seminar)
+            student_rankings[student + 1] = student_ranking
+    return student_rankings
+
+
+
+
+
+
+def single_placement_sim(seminars:int, max_class_size:int, students:int, preferences:int, even_distribution = True, distribution_dict = None) -> dict:
+    """This function simulates the discovery seminar scenario: a number of students ranking classes with a student limit."""
+    """Output is a dictonary containing the number of students recieving each possible ranked preference."""
+
+    student_rankings = generate_even_rankings(seminars, students, preferences) if even_distribution else generate_uneven_rankings(seminars, students, preferences, distribution_dict)
     
     #print(student_rankings)
 
@@ -41,12 +74,12 @@ def single_placement_sim(seminars:int, max_class_size:int, students:int, prefere
 
     return preferences_dict
 
-def simulate_dsc(seminars:int, max_class_size:int, students:int, preferences:int, iterations:int) -> dict:
+def simulate_dsc(seminars:int, max_class_size:int, students:int, preferences:int, iterations:int, even_distribution = True, distribution_dict = None) -> dict:
     """Runs single_placement_sim() iterations times and averages ranking totals"""
 
     average_placements = {index + 1: 0 for index in range(preferences)}
     for iteration in range(iterations):
-        placements = single_placement_sim(seminars, max_class_size, students, preferences)
+        placements = single_placement_sim(seminars, max_class_size, students, preferences, even_distribution, distribution_dict)
         for index in range(preferences):
             average_placements[index + 1] += placements[index + 1]
     for index in range(preferences):

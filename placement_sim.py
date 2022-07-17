@@ -1,3 +1,5 @@
 import placement_logic
 
-print(placement_logic.simulate_dsc(26, 16, 350, 5, 100))
+
+
+print(placement_logic.simulate_dsc(5, 10, 35, 5, 1000))
