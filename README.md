@@ -19,15 +19,15 @@ These are the results after running a few 10,000 iteration simulations with vary
 390 - 1: 0.6271, 2: 0.1170, 3: 0.06181, 4: 0.04054, 5: 0.02988
 400 - 1: 0.6175, 2: 0.1162, 3: 0.06198, 4: 0.04170, 5: 0.03058
 
-## Why these results certainly aren't perfect (and are actually probably pretty bad!)
+## Why these results aren't perfect (and are actually probably pretty bad!)
 
-**1. The rounding of the poll results is really, really bad...
+**1. The rounding of the poll results is really, really bad...**
 
 It's really hard to make an accurate model based on popularity when almost half of your classes (12/26) give you nothing beyond the fact that they're selected less than about 2.5% of the time. In consequence, any guesses made as to the popularity of these classes is going to suck.
 
 In retrospect, this all could have been fixed if I had just added options to enter in 2nd, 3rd, 4th, and 5th classes. Oh well.
 
-**2. This is not the most efficient way to handle rankings!
+**2. This is not the most efficient way to handle rankings!**
 
 An example of a situation in which this method of filling classes until they're full rather than actually placing efficiently falls short is as follows:
 
