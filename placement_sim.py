@@ -29,4 +29,9 @@ poll_results = {
     26: .1282,
 }
 
-print(placement_logic.simulate_dsc(26, 16, 350, 5, 10_000, False, poll_results))
+print(placement_logic.simulate_dsc(26, 16, 350, 5, 1_000, False, poll_results)[1])
+print(placement_logic.simulate_dsc(26, 16, 360, 5, 1_000, False, poll_results)[1])
+print(placement_logic.simulate_dsc(26, 16, 370, 5, 1_000, False, poll_results)[1])
+print(placement_logic.simulate_dsc(26, 16, 380, 5, 1_000, False, poll_results)[1])
+print(placement_logic.simulate_dsc(26, 16, 390, 5, 1_000, False, poll_results)[1])
+print(placement_logic.simulate_dsc(26, 16, 400, 5, 1_000, False, poll_results)[1])
