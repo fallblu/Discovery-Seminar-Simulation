@@ -13,10 +13,15 @@ The results of the poll presented a challenge in that many of the classes reciev
 These are the results after running a few 10,000 iteration simulations with varying student body sizes and the rounded off survey results
 
 350 - 1: 0.6812, 2: 0.1156, 3: 0.05638, 4: 0.03444, 5: 0.02436
+
 360 - 1: 0.6674, 2: 0.1156, 3: 0.05776, 4: 0.03637, 5: 0.02579
+
 370 - 1: 0.6537, 2: 0.1167, 3: 0.05901, 4: 0.03748, 5: 0.02686
+
 380 - 1: 0.6408, 2: 0.1167, 3: 0.06031, 4: 0.03922, 5: 0.02800
+
 390 - 1: 0.6271, 2: 0.1170, 3: 0.06181, 4: 0.04054, 5: 0.02988
+
 400 - 1: 0.6175, 2: 0.1162, 3: 0.06198, 4: 0.04170, 5: 0.03058
 
 ## Why these results aren't perfect (and are actually probably pretty bad!)
